@@ -1,12 +1,12 @@
-// ======= script.js (Revisi Offline) =======
+// ======= script.js (Versi Lengkap Offline) =======
 
-// Path ke file JSON lokal
-const LOCAL_JSON_PATH = "chapterDatabase.json";
+// Path ke JSON lokal
+const LOCAL_JSON_PATH = "assets/data/chapterDatabase.json";
 
-// Fungsi load JSON lokal
+// Load JSON lokal
 async function loadLocalJSON(path) {
     try {
-        const response = await fetch(path); // fetch lokal
+        const response = await fetch(path);
         const data = await response.json();
         return data;
     } catch (err) {
@@ -15,10 +15,10 @@ async function loadLocalJSON(path) {
     }
 }
 
-// Fungsi populate dropdown chapter
+// Populate dropdown chapter
 function populateChapterSelect(chapters) {
     const select = document.getElementById("chapterSelect");
-    select.innerHTML = ""; // Kosongkan dulu
+    select.innerHTML = "";
     chapters.forEach((ch, idx) => {
         const option = document.createElement("option");
         option.value = idx;
@@ -27,17 +27,32 @@ function populateChapterSelect(chapters) {
     });
 }
 
-// Tampilkan konten chapter
+// Tampilkan konten dan asset
 function displayContent(chapters, index) {
     const contentDiv = document.getElementById("content");
+    const img = document.getElementById("chapterImage");
+    const audio = document.getElementById("chapterAudio");
+
     if (!chapters[index]) {
         contentDiv.textContent = "Chapter tidak ditemukan.";
+        img.src = "";
+        audio.src = "";
         return;
     }
-    contentDiv.textContent = chapters[index].content;
+
+    const chapter = chapters[index];
+    contentDiv.textContent = chapter.content;
+
+    // Image
+    img.src = chapter.image || "";
+    img.style.display = chapter.image ? "block" : "none";
+
+    // Audio
+    audio.src = chapter.audio || "";
+    audio.style.display = chapter.audio ? "block" : "none";
 }
 
-// Fungsi translate (online Google Translate)
+// Translate online
 async function translateText(text, targetLang = "id") {
     try {
         const response = await fetch(
@@ -53,7 +68,6 @@ async function translateText(text, targetLang = "id") {
 
 // ====== Program Utama ======
 async function main() {
-    // 1. Load JSON lokal
     const data = await loadLocalJSON(LOCAL_JSON_PATH);
     if (!data || !data.chapters) {
         console.error("Data chapter tidak ditemukan atau format JSON salah.");
@@ -61,17 +75,14 @@ async function main() {
     }
     const chapters = data.chapters;
 
-    // 2. Populate dropdown dan tampilkan chapter pertama
     populateChapterSelect(chapters);
     displayContent(chapters, 0);
 
-    // 3. Event dropdown change
+    // Event dropdown
     const select = document.getElementById("chapterSelect");
-    select.addEventListener("change", () => {
-        displayContent(chapters, select.value);
-    });
+    select.addEventListener("change", () => displayContent(chapters, select.value));
 
-    // 4. Event translate button
+    // Event translate
     const btn = document.getElementById("translateBtn");
     btn.addEventListener("click", async () => {
         const idx = select.value;
@@ -81,5 +92,5 @@ async function main() {
     });
 }
 
-// Jalankan program
+// Jalankan
 main();
