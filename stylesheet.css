@@ -1,0 +1,548 @@
+body
+{
+	text-align:center;
+	--bg-color: white;
+	--text-color: black;
+	--nav-color: #5578ff;
+	--nav-color-hover: #bf4040;
+	--btn-color: #267ca6;
+	--btn-color-hover: #4a84a1;
+	--sidenav-icon-color: rgba(0,0,0,0.54);
+	--card-color: #fff;
+	--collection-item-color:#fff;
+	--dropdown-text-color:#267ca6;
+	--dropdown-hover-color:#eee;
+	--settings-row-border-color: rgba(0, 0, 0, 0.12);
+	--colored-dialogue: brightness(0.6);
+	
+	background-color: var(--bg-color);
+	color: var(--text-color);
+}
+
+body.dark-theme{
+	--bg-color: #333333;
+	--text-color: white;
+	--nav-color:#1a237e;
+	--nav-color-hover:#3465a4;
+	--sidenav-icon-color: rgba(255,255,255,0.54);
+	/*--btn-color: #26a69a;*/
+	--card-color: #455a64;
+	--collection-item-color:#2b2b2b;
+	--dropdown-text-color: white;
+	--dropdown-hover-color: black;
+	
+	--settings-row-border-color: rgba(255, 255, 255, 0.5);
+	--colored-dialogue: brightness(1.0);
+}
+body.black-theme{
+	--bg-color: black;
+	--text-color: white;
+	--nav-color: #212121;
+	--sidenav-icon-color: rgba(255,255,255,0.54);
+	--btn-color: #455a64;
+	--btn-color-hover: #597da4;
+	--card-color: #2e3436;
+	--collection-item-color: black;
+	--dropdown-text-color: white;
+	--dropdown-hover-color: black;
+	
+	--settings-row-border-color: rgba(255, 255, 255, 0.8);
+	--colored-dialogue: brightness(1.0);
+}
+
+nav {
+	background-color: var(--nav-color);
+}
+.sidenav {
+	text-align: left;
+	background-color: var(--bg-color);
+	color:var(--text-color);
+}
+.sidenav li > a {
+	color:var(--text-color);
+	line-height: 1;
+}
+.sidenav li > a > i.material-icons {
+	color:var(--sidenav-icon-color)
+}
+.sidenav li > a > span {
+	height:48px;
+	vertical-align: middle;
+	display:table-cell;
+}
+/* For sidenav */
+.divider-with-text {
+  overflow: hidden;
+  text-align: center;
+  line-height:24px !important;
+}
+
+.divider-with-text::before,
+.divider-with-text::after {
+  background-color: var(--text-color);
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.divider-with-text::before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.divider-with-text::after {
+  left: 0.5em;
+  margin-right: -50%;
+}
+
+textarea{
+	color:var(--text-color);
+}
+
+input, label{
+	color:var(--text-color);
+}
+h2 {
+	margin: 1.424rem 0 1.424rem 0;
+}
+
+.textarea-wrapper{
+	/*border:1px solid red;*/
+	position:relative;
+	height:500px;
+	width:700px;
+	margin:15px auto
+}
+/*.textarea-wrapper::before {
+	content:"wrapper";
+	text-transform: uppercase;
+	left:0px;
+	position:absolute;
+	top:-18px;
+	font-size:16px;
+	color:red;
+}*/
+
+/*table, th, td {
+   border: 1px solid #222222;
+   border-collapse: collapse;
+}
+th {
+	background-color: purple;
+}*/
+
+.header-desktop{
+	display: inline-block;
+}
+.header-desktop-shorter{
+	display: none;
+}
+.header-mobile{
+	display: none;
+}
+
+.chapterTitles-mobile{
+	display: none;
+}
+
+#mobileWarning {
+	display:none;
+}
+
+@media screen and (max-width: 1250px) {
+    .header-desktop{
+       display:none;
+    }
+    
+    .header-desktop-shorter{
+       display:inline-block;
+    }
+    
+    .chapterTitles-desktop{
+		display: none;
+	}
+	.chapterTitles-mobile{
+		display: block;
+	}
+    
+    .navbarButton{
+    	padding: 0 5px; /*Since text is hidden, remove the padding between buttons*/
+    }
+    
+    .modal {
+    	width:100%;
+    	max-height:100%;
+    	height:100%;
+    	top:0 !important;
+    }
+    .modal.modal-fixed-footer{
+    	height:100%;
+    }
+
+
+
+	#mobileWarning {
+		display:inline;
+	}
+	#TDollStuffInner {
+		display:none;
+	}
+
+}
+
+@media screen and (max-width: 500px) {
+    .header-desktop{
+       display:none;
+    }
+    .header-desktop-shorter{
+       display:none;
+    }
+    
+    .header-mobile{
+       display:inline-block;
+    }
+
+	.navbarButton > i {
+		margin-right: 5px;
+	}
+}
+
+.btn, .btn:focus {
+	background-color: var(--btn-color);
+}
+.btn:hover {
+	background-color: var(--btn-color-hover);
+
+	/* This breaks the tween so can't use it */
+	/* background-color: var(--btn-color);
+	filter: brightness(125%); */
+}
+
+[type="checkbox"].filled-in:checked + span:not(.lever)::after {
+	border: 2px solid var(--btn-color);
+	background-color: var(--btn-color);
+}
+
+.progress .determinate {
+	background-color: var(--btn-color);
+}
+
+
+.card {
+	background-color: var(--card-color);
+}
+.modal {
+	background-color: var(--bg-color);
+	/* sadly animating 'top' breaks the modal showing */
+	transition: width 0.2s ease-out, height 0.2s ease-out;
+}
+.collection {
+	border: 1px solid #e0e0e07d;
+}
+.collection .collection-item{
+	background-color: var(--collection-item-color);
+	border-bottom: 1px solid #e0e0e07d;
+}
+.left-icon > i{
+	float:left;
+	padding-right:10px;
+}
+
+.dropdown-content{
+	background-color: var(--card-color);
+}
+.dropdown-content li > a {
+	color: var(--dropdown-text-color);
+}
+.dropdown-content li:hover, .dropdown-content li.active {
+  background-color: var(--dropdown-hover-color);
+}
+
+.collapsible-header {
+	background-color: var(--collection-item-color);
+}
+
+.pagination{
+	max-width:700px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.pagination li a {
+	color: var(--text-color);
+}
+.pagination li.active {
+	background-color: var(--nav-color);
+}
+.pagination li.active:hover{
+	background-color:var(--nav-color-hover);
+}
+.pagination li {
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+/*Something I actually wrote myself*/
+.material-settings-table {
+	padding: 0px;
+}
+.material-settings-table td {
+	padding: 0px;
+}
+.material-settings-table p {
+	margin: 0px;
+}
+.material-settings-table tr {
+	border-bottom-color: var(--settings-row-border-color);
+}
+
+.material-settings-table .title {
+	font-weight: bold;
+	font-size:120%
+}
+.modal .modal-footer {
+	background-color: rgba(128,128,128,0.3);
+}
+.modal .modal-footer > a {
+	color: var(--text-color);
+}
+
+/*#head, #foot {
+	height: 6%;
+	min-height: 25px;
+	width: 100%;
+	background-color: #151515;
+	overflow: hidden;
+}
+
+#head a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+#head a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#head a.active {
+  background-color: #4CAF50;
+  color: white;
+}*/
+
+.tabs {
+    display:-webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+	background-color: unset;
+}
+
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  /*background-color: DodgerBlue;*/
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-container > div {
+  /*background-color: #f1f1f1;*/ /*I don't remember why I put this here. It makes the buttons square though. */
+  margin: 5px;
+  /*padding: 20px;
+  font-size: 30px;*/
+}
+
+/*tr:nth-child(odd) {
+    background-color: #000000CC;
+}
+tr:nth-child(even) {
+    background-color: #111111CC;
+}*/
+
+
+
+#verySimpleText{
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.coloredDialogue{
+	filter: var(--colored-dialogue);
+}
+
+/*To make everything nice and centered on desktop.*/
+@media screen and (min-width:701px) {
+
+	#verySimpleText{
+		margin-left: 0px;
+		margin-right: 0px;
+		width: 700px; 
+		margin: 0 auto;
+	}
+}
+
+/*.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.charName {
+  font-family: 'Noto Sans KR', sans-serif;
+  position: absolute;
+  top: 5px;
+  left: 16px;
+  font-size: 2vw;
+}
+
+.absText {
+      font-family: 'Noto Sans KR', sans-serif;
+  position: absolute;
+  top: 45px;
+  left: 16px;
+  font-size: 2.2vw;
+}*/
+
+
+/*.speakerName{
+	font-weight: bold;
+}*/
+
+
+
+.snow{
+	background-image:
+        url(snow1.png),
+           url(snow2.png),
+           url(snow3.png);
+	animation: snow 30s linear infinite;
+}
+
+@keyframes snow {
+    0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+    100% {background-position: 500px 1000px, 400px 400px, 300px 300px}
+}
+
+
+.storyText {
+	margin-top: 0.5ex;
+	margin-bottom: 0.5ex;
+	overflow-wrap: break-word;
+}
+
+.storyText.speakerName {
+	/*margin-top: 0;*/
+	font-weight: bold;
+}
+
+/*
+Blatantly stolen from gfl.zzzzz.kr 
+I have no idea how it works
+*/
+.storyImg{
+	position:relative;
+	overflow:hidden; /*Keep portraits within div */
+	width:100%;
+	margin-top:1.5rem;
+}
+
+.storyImg.pointer {
+	cursor:pointer;
+}
+
+
+.storydoll{
+	width:71%; /*You're probably wondering why this is 71% instead of 70%. After all, left:15% will create the remaining 30% to center the image right? Well it turns out that the heads of most images are slightly to the left and not centered. I think gfl.zzzzz.kr did it on purpose so it would look slightly more centered. */
+	position: absolute;
+	bottom: -30%;
+	z-index: 5; /*higher number means it's drawn in front */
+}
+.storydoll.one{
+	left:15%; /*Margin of 15%, which also creates a right margin of 15%, which adds up the remaining 30% in 'width' in storyImg class */
+}
+.storydoll.first.two{
+	right:35%
+}
+.storydoll.second.two{
+	left:35%
+}
+
+.storydoll > :nth-child(2) {
+	position:absolute;
+}
+
+.storydoll > img.portrait {
+	width:100%;
+}
+
+/*.storydoll > .expression {
+
+}*/
+
+.storydoll.dim{
+	filter: brightness(50%);
+	z-index:4;
+}
+.storydoll.mask {
+	mask-position: center;
+	mask-size: 100%; /* I don't know why 100% works but it does */
+	-webkit-mask-size: 100%;
+	filter: brightness(300%) opacity(75%);
+}
+
+.maskcontainer{
+	z-index:5;
+}
+.maskcontainer.one{
+	left:35%; /*This is a guess, I don't know how it works */
+}
+.maskcontainer.first.two{
+	left:15%;
+}
+.maskcontainer.second.two{
+	left:55%
+}
+/*Should probably fix later */
+.maskcontainer.dim{
+	z-index:4;
+}
+.maskcontainer > div > img.dim{
+	filter: brightness(50%);
+}
+
+/*.storydoll.saying{
+	filter: brightness(100%);
+	z-index: 100;
+}*/
+
+#SearchResults {
+	cursor: pointer;
+	display: block;
+	text-align: left;
+}
+/*lol */
+.collection-item.waves-effect {
+	display: inherit;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-areas:
+		'menu main';
+	grid-template-columns:25% auto;
+	grid-gap:10px;
+	padding: 0px;
+
+}
